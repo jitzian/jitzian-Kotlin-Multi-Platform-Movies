@@ -74,3 +74,8 @@ xcuserdata
 # Kotlin Multiplatform
 build/
 bin/
+.composeApp-*
+
+# Ignore Kotlin metadata
+.kotlin/metadata/
+.kotlin/metadata/kotlinTransformedCInteropMetadataLibraries/
