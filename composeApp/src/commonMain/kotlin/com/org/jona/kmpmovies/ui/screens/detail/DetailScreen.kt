@@ -31,7 +31,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun DetailScreen(modifier: Modifier = Modifier) {
     val movie = movies.first()
-    Screen(modifier = modifier) {
+    Screen {
         Scaffold(
             topBar = {
                 TopAppBar(
