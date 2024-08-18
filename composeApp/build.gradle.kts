@@ -48,6 +48,7 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
             implementation(libs.ktor.client.core)
+            implementation(libs.androidx.navigation.compose)
 
         }
         iosMain.dependencies {

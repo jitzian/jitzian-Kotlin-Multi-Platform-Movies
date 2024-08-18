@@ -1,3 +1,4 @@
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -29,7 +30,9 @@ import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onMovieClick: (Movie) -> Unit,
+) {
     Screen {
         val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
         Scaffold(
@@ -49,7 +52,10 @@ fun HomeScreen() {
                 modifier = Modifier.padding(paddingValues)
             ) {
                 items(movies, key = { it.id }) { movie ->
-                    MovieItem(movie = movie)
+                    MovieItem(
+                        movie = movie,
+                        onMovieClick = { onMovieClick(movie) }
+                    )
                 }
             }
         }
@@ -57,8 +63,11 @@ fun HomeScreen() {
 }
 
 @Composable
-fun MovieItem(movie: Movie) {
-    Column {
+fun MovieItem(
+    movie: Movie,
+    onMovieClick: () -> Unit,
+) {
+    Column(modifier = Modifier.clickable { onMovieClick() }) {
         AsyncImage(
             model = movie.poster,
             contentDescription = movie.title,

@@ -1,13 +1,12 @@
 package com.org.jona.kmpmovies
 
-import HomeScreen
 import androidx.compose.runtime.Composable
 import coil3.ImageLoader
 import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.request.crossfade
 import coil3.util.DebugLogger
-import com.org.jona.kmpmovies.ui.screens.detail.DetailScreen
+import com.org.jona.kmpmovies.ui.screens.home.Navigation
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalCoilApi::class)
@@ -20,7 +19,6 @@ fun App() {
             .logger(DebugLogger())
             .build()
     }
-    //HomeScreen()
-    DetailScreen()
+    Navigation()
 }
 
