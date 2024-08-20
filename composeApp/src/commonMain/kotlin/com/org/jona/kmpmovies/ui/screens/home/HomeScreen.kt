@@ -3,6 +3,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -15,15 +16,20 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import com.org.jona.kmpmovies.Movie
-import com.org.jona.kmpmovies.movies
 import com.org.jona.kmpmovies.ui.screens.Screen
+import com.org.jona.kmpmovies.ui.screens.UIState
+import com.org.jona.kmpmovies.ui.screens.home.HomeViewModel
+import com.org.jona.kmpmovies.ui.screens.home.LoadingScreen
 import kmpmovies.composeapp.generated.resources.Res
 import kmpmovies.composeapp.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
@@ -32,7 +38,10 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun HomeScreen(
     onMovieClick: (Movie) -> Unit,
+    vm: HomeViewModel = viewModel { HomeViewModel() }
 ) {
+
+    val state by vm.state.collectAsState()
     Screen {
         val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
         Scaffold(
@@ -44,20 +53,31 @@ fun HomeScreen(
             },
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
         ) { paddingValues ->
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(128.dp),
-                contentPadding = PaddingValues(4.dp),
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-                modifier = Modifier.padding(paddingValues)
-            ) {
-                items(movies, key = { it.id }) { movie ->
-                    MovieItem(
-                        movie = movie,
-                        onMovieClick = { onMovieClick(movie) }
-                    )
+            when (state) {
+                UIState.Loading -> LoadingScreen(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues),
+                )
+
+                UIState.Empty -> Unit
+                is UIState.Error -> Unit
+                is UIState.Success -> LazyVerticalGrid(
+                    columns = GridCells.Adaptive(128.dp),
+                    contentPadding = PaddingValues(4.dp),
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier.padding(paddingValues)
+                ) {
+                    items((state as UIState.Success).movies, key = { it.id }) { movie ->
+                        MovieItem(
+                            movie = movie,
+                            onMovieClick = { onMovieClick(movie) }
+                        )
+                    }
                 }
             }
+
         }
     }
 }

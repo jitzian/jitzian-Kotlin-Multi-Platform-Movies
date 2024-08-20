@@ -49,6 +49,7 @@ kotlin {
             implementation(libs.coil.network.ktor)
             implementation(libs.ktor.client.core)
             implementation(libs.androidx.navigation.compose)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
 
         }
         iosMain.dependencies {
