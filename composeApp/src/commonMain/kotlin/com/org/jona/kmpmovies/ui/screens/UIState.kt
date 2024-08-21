@@ -1,6 +1,6 @@
 package com.org.jona.kmpmovies.ui.screens
 
-import com.org.jona.kmpmovies.Movie
+import com.org.jona.kmpmovies.ui.screens.data.Movie
 
 sealed interface UIState {
     data object Loading : UIState

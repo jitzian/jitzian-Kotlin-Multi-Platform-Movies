@@ -25,7 +25,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
-import com.org.jona.kmpmovies.Movie
+import com.org.jona.kmpmovies.ui.screens.data.Movie
 import com.org.jona.kmpmovies.ui.screens.Screen
 import com.org.jona.kmpmovies.ui.screens.UIState
 import com.org.jona.kmpmovies.ui.screens.home.HomeViewModel
@@ -38,7 +38,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun HomeScreen(
     onMovieClick: (Movie) -> Unit,
-    vm: HomeViewModel = viewModel { HomeViewModel() }
+    //vm: HomeViewModel = viewModel { HomeViewModel() }
+    vm: HomeViewModel,
 ) {
 
     val state by vm.state.collectAsState()

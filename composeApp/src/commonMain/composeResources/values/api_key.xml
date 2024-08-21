@@ -1,0 +1,4 @@
+<resources>
+    <string name="api_key"></string>
+    <string name="api_read_access_token"></string>
+</resources>

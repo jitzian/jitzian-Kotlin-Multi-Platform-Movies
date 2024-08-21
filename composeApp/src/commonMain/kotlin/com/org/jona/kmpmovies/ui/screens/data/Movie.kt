@@ -1,4 +1,4 @@
-package com.org.jona.kmpmovies
+package com.org.jona.kmpmovies.ui.screens.data
 
 data class Movie(
     val id: Int,
