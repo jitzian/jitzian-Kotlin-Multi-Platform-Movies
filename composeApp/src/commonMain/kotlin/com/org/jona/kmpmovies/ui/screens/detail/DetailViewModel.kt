@@ -1,4 +1,4 @@
-package com.org.jona.kmpmovies.ui.screens.home
+package com.org.jona.kmpmovies.ui.screens.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
-class HomeViewModel(
+class DetailViewModel(
+    private val id: Int,
     private val moviesRepository: MoviesRepository,
 ) : ViewModel() {
 
@@ -20,8 +21,7 @@ class HomeViewModel(
         viewModelScope.launch {
             _state.value = UIState.Loading
             delay(1.seconds)
-            _state.value = UIState.Success(moviesRepository.fetchPopularMovies())
+            _state.value = UIState.Success(moviesRepository.fetchMovieById(id))
         }
     }
-
 }

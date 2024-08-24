@@ -1,4 +1,4 @@
-package com.org.jona.kmpmovies.ui.screens
+package com.org.jona.kmpmovies.ui.screens.home
 
 import com.org.jona.kmpmovies.ui.screens.data.Movie
 

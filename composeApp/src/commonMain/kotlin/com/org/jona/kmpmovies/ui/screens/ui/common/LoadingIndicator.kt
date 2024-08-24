@@ -1,4 +1,4 @@
-package com.org.jona.kmpmovies.ui.screens.home
+package com.org.jona.kmpmovies.ui.screens.ui.common
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.CircularProgressIndicator
@@ -7,7 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun LoadingScreen(modifier: Modifier = Modifier) =
+fun LoadingIndicator(modifier: Modifier = Modifier) =
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         CircularProgressIndicator()
     }
