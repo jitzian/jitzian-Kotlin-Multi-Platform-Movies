@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Películas KMP</string>
+    <string name="back">Atrás</string>
+    <string name="original_name">Lenguage original</string>
+    <string name="original_title">Título original</string>
+    <string name="release_date">Fecha de estreno</string>
+    <string name="popularity">Popularidad</string>
+    <string name="vote_average">Promedio de votos</string>
+</resources>
