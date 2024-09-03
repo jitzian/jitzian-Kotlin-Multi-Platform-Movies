@@ -6,6 +6,7 @@ import com.org.jona.kmpmovies.ui.screens.data.MoviesRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
@@ -19,8 +20,12 @@ class HomeViewModel(
     init {
         viewModelScope.launch {
             _state.value = UIState.Loading
-            delay(1.seconds)
-            _state.value = UIState.Success(moviesRepository.fetchPopularMovies())
+            //delay(1.seconds)
+            //_state.value = UIState.Success(moviesRepository.fetchPopularMovies())
+            //
+            moviesRepository.movies.collect {
+                _state.value = UIState.Success(it)
+            }
         }
     }
 

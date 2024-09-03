@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.org.jona.kmpmovies.ui.screens.data.MovieService
 import com.org.jona.kmpmovies.ui.screens.data.MoviesRepository
+import com.org.jona.kmpmovies.ui.screens.data.database.MoviesDao
 import com.org.jona.kmpmovies.ui.screens.detail.DetailScreen
 import com.org.jona.kmpmovies.ui.screens.detail.DetailViewModel
 import com.org.jona.kmpmovies.ui.screens.mappers.MoviesRemoteToMoviesDomainMapper
@@ -25,9 +26,12 @@ import kotlinx.serialization.json.Json
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun Navigation(modifier: Modifier = Modifier) {
+fun Navigation(
+    modifier: Modifier = Modifier,
+    moviesDao: MoviesDao,
+) {
     val navController = rememberNavController()
-    val repository = rememberMoviesRepository()
+    val repository = rememberMoviesRepository(moviesDao)
 
     NavHost(
         navController = navController,
@@ -59,6 +63,7 @@ fun Navigation(modifier: Modifier = Modifier) {
 
 @Composable
 private fun rememberMoviesRepository(
+    moviesDao: MoviesDao,
     apiKey: String = stringResource(Res.string.api_key)
 ): MoviesRepository = remember {
 
@@ -80,5 +85,5 @@ private fun rememberMoviesRepository(
     }
 
     //This is the returned value. This way we avoid the return type of the remember block
-    MoviesRepository(MovieService(client), MoviesRemoteToMoviesDomainMapper())
+    MoviesRepository(MovieService(client), MoviesRemoteToMoviesDomainMapper(), moviesDao)
 }

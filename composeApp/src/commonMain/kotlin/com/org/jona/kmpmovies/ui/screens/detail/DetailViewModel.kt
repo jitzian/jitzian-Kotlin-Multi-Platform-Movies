@@ -20,8 +20,11 @@ class DetailViewModel(
     init {
         viewModelScope.launch {
             _state.value = UIState.Loading
-            delay(1.seconds)
-            _state.value = UIState.Success(moviesRepository.fetchMovieById(id))
+            //delay(1.seconds)
+            //_state.value = UIState.Success(moviesRepository.fetchMovieById(id))
+            moviesRepository.fetchMovieById(id).collect { movie ->
+                movie?.let { _state.value = UIState.Success(it) }
+            }
         }
     }
 }
