@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.org.jona.kmpmovies.BuildConfig
 import com.org.jona.kmpmovies.ui.screens.data.MovieService
 import com.org.jona.kmpmovies.ui.screens.data.MoviesRepository
 import com.org.jona.kmpmovies.ui.screens.data.database.MoviesDao
@@ -62,10 +63,7 @@ fun Navigation(
 }
 
 @Composable
-private fun rememberMoviesRepository(
-    moviesDao: MoviesDao,
-    apiKey: String = stringResource(Res.string.api_key)
-): MoviesRepository = remember {
+private fun rememberMoviesRepository(moviesDao: MoviesDao): MoviesRepository = remember {
 
     //TODO: Optimize this. I gotta move to a different layer with DI
     val client = HttpClient {
@@ -78,7 +76,7 @@ private fun rememberMoviesRepository(
             url {
                 protocol = URLProtocol.HTTPS
                 host = "api.themoviedb.org"
-                parameters.append("api_key", apiKey)
+                parameters.append("api_key", BuildConfig.API_KEY)
 
             }
         }
