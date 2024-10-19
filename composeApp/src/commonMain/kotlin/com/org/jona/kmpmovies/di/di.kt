@@ -51,10 +51,10 @@ val dataModule = module {
             }
         }
     }
+}
 
-
+val mappersModule = module {
     factoryOf(::MoviesRemoteToMoviesDomainMapper)
-
 }
 
 val viewModelsModule = module {
@@ -68,6 +68,6 @@ expect val nativeModule: Module
 fun initKoin(config: KoinAppDeclaration? = null) {
     startKoin {
         config?.invoke(this)
-        modules(appModule, dataModule, viewModelsModule, nativeModule)
+        modules(appModule, dataModule, viewModelsModule, nativeModule, mappersModule)
     }
 }
