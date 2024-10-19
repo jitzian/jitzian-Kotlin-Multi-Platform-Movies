@@ -21,7 +21,8 @@ ksp = "2.0.0-1.0.21"
 androidx-room = "2.7.0-alpha03"
 androidx-sqliteBundled = "2.5.0-alpha03"
 buildconfig = "5.3.5"
-
+koin = "3.6.0-Beta4"
+koinCompose = "1.2.0-Beta4"
 
 
 [libraries]
@@ -52,6 +53,11 @@ ktor-client-contentnegotiation = { group = "io.ktor", name = "ktor-client-conten
 ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
 androidx-navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+koin-core = { group = "io.insert-koin", name = "koin-core" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose" }
+koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koinCompose"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

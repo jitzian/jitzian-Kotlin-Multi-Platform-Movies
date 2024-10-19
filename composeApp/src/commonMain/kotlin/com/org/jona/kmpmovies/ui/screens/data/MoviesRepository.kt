@@ -22,7 +22,7 @@ class MoviesRepository(
     }
 
     //suspend fun fetchMovieById(id: Int): Movie = mapper(moviesService.fetchMovieById(id))
-    suspend fun fetchMovieById(id: Int): Flow<Movie?> =
+    fun fetchMovieById(id: Int): Flow<Movie?> =
         moviesDao.findMovieById(id).onEach { movie ->
             if (movie == null) {
                 val remoteMovie = mapper(moviesService.fetchMovieById(id))

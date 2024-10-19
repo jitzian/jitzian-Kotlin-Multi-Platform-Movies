@@ -25,14 +25,16 @@ import kmpmovies.composeapp.generated.resources.Res
 import kmpmovies.composeapp.generated.resources.api_key
 import kotlinx.serialization.json.Json
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.core.parameter.parametersOf
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 fun Navigation(
     modifier: Modifier = Modifier,
-    moviesDao: MoviesDao,
 ) {
     val navController = rememberNavController()
-    val repository = rememberMoviesRepository(moviesDao)
 
     NavHost(
         navController = navController,
@@ -44,7 +46,8 @@ fun Navigation(
                 onMovieClick = { movie ->
                     navController.navigate("details/${movie.id}")
                 },
-                vm = HomeViewModel(moviesRepository = repository)
+                //vm = HomeViewModel(moviesRepository = repository)
+
             )
         }
         composable(
@@ -55,13 +58,15 @@ fun Navigation(
         ) { backStackEntry ->
             val movieId = checkNotNull(backStackEntry.arguments?.getInt("movieId"))
             DetailScreen(
-                vm = DetailViewModel(movieId, repository),
+                //vm = DetailViewModel(movieId, repository),
+                vm = koinViewModel(parameters = { parametersOf(movieId) }),
                 onBack = { navController.popBackStack() }
             )
         }
     }
 }
 
+/*
 @Composable
 private fun rememberMoviesRepository(moviesDao: MoviesDao): MoviesRepository = remember {
 
@@ -84,4 +89,4 @@ private fun rememberMoviesRepository(moviesDao: MoviesDao): MoviesRepository = r
 
     //This is the returned value. This way we avoid the return type of the remember block
     MoviesRepository(MovieService(client), MoviesRemoteToMoviesDomainMapper(), moviesDao)
-}
+}*/
