@@ -30,4 +30,8 @@ class MoviesRepository(
             }
         }
 
+    suspend fun toggleFavorite(movie: Movie) =
+        moviesDao.save(listOf(movie.copy(isFavorite = !movie.isFavorite)))
+
+
 }

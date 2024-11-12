@@ -10,7 +10,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +40,7 @@ import com.org.jona.kmpmovies.ui.screens.Screen
 import com.org.jona.kmpmovies.ui.screens.ui.common.LoadingIndicator
 import kmpmovies.composeapp.generated.resources.Res
 import kmpmovies.composeapp.generated.resources.back
+import kmpmovies.composeapp.generated.resources.favorite
 import kmpmovies.composeapp.generated.resources.original_name
 import kmpmovies.composeapp.generated.resources.original_title
 import kmpmovies.composeapp.generated.resources.popularity
@@ -61,6 +65,24 @@ fun DetailScreen(
                     onBack = onBack,
                     scrollBehavior = scrollBehavior,
                 )
+            },
+            floatingActionButton = {
+                when (state) {
+                    is UIState.Success -> {
+                        println("State: ${state::class}")
+                        FloatingActionButton(
+                            onClick =  vm::onFavoriteClick ,
+                            modifier = Modifier.padding(16.dp)
+                        ) {
+                            Icon(
+                                //imageVector = Icons.Default.Favorite,
+                                imageVector = if ((state as UIState.Success).movie.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                                contentDescription = stringResource(Res.string.favorite)
+                            )
+                        }
+                    }
+                    else -> Unit
+                }
             }
         ) { paddingValues ->
             MovieDetail(
