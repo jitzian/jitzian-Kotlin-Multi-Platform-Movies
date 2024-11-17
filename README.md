@@ -10,6 +10,17 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
 * `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
   you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
 
+## Technologies and Frameworks
+
+- **Kotlin Multiplatform**
+- **Jetpack Compose**
+- **SwiftUI**
+- **Koin** for dependency injection
+- **Ktor** for networking
+- **Room** for database
+- **Coil** for image loading
+- **Moko Permissions** for handling permissions
+- **Gradle** for build automation
 
 ## Android Screenshots
 
