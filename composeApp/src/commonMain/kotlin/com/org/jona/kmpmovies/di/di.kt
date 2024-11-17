@@ -2,8 +2,9 @@ package com.org.jona.kmpmovies.di
 
 import androidx.room.RoomDatabase
 import com.org.jona.kmpmovies.BuildConfig
-import com.org.jona.kmpmovies.ui.screens.data.MovieService
+import com.org.jona.kmpmovies.ui.screens.data.remote.MovieService
 import com.org.jona.kmpmovies.ui.screens.data.MoviesRepository
+import com.org.jona.kmpmovies.ui.screens.data.RegionRepository
 import com.org.jona.kmpmovies.ui.screens.data.database.MoviesDao
 import com.org.jona.kmpmovies.ui.screens.data.database.MoviesDatabase
 import com.org.jona.kmpmovies.ui.screens.detail.DetailViewModel
@@ -34,6 +35,8 @@ val appModule = module {
 val dataModule = module {
     factoryOf(::MoviesRepository)
     factoryOf(::MovieService)
+    factoryOf(::RegionRepository)
+    
     single<HttpClient> {
         HttpClient {
             install(ContentNegotiation) {

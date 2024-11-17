@@ -34,6 +34,8 @@ import com.org.jona.kmpmovies.ui.screens.data.Movie
 import com.org.jona.kmpmovies.ui.screens.home.HomeViewModel
 import com.org.jona.kmpmovies.ui.screens.home.UIState
 import com.org.jona.kmpmovies.ui.screens.ui.common.LoadingIndicator
+import com.org.jona.kmpmovies.ui.screens.ui.common.PermissionRequestEffect
+import dev.icerock.moko.permissions.Permission
 import kmpmovies.composeapp.generated.resources.Res
 import kmpmovies.composeapp.generated.resources.app_name
 import kmpmovies.composeapp.generated.resources.favorite
@@ -47,6 +49,7 @@ fun HomeScreen(
     onMovieClick: (Movie) -> Unit,
     vm: HomeViewModel = koinViewModel()
 ) {
+    PermissionRequestEffect(Permission.COARSE_LOCATION) { vm.onUiReady() }
 
     val state by vm.state.collectAsState()
     Screen {

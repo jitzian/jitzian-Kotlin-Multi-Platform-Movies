@@ -1,4 +1,4 @@
-package com.org.jona.kmpmovies.ui.screens.detail
+package com.org.jona.kmpmovies.ui.screens.data.remote
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

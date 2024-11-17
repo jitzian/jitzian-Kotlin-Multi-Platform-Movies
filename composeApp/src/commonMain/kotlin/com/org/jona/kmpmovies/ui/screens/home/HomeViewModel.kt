@@ -17,16 +17,15 @@ class HomeViewModel(
     private val _state: MutableStateFlow<UIState> = MutableStateFlow(UIState.Empty)
     val state = _state.asStateFlow()
 
-    init {
-        viewModelScope.launch {
-            _state.value = UIState.Loading
-            //delay(1.seconds)
-            //_state.value = UIState.Success(moviesRepository.fetchPopularMovies())
-            //
-            moviesRepository.movies.collect {
-                _state.value = UIState.Success(it)
-            }
+    fun onUiReady() = viewModelScope.launch {
+        _state.value = UIState.Loading
+        //delay(1.seconds)
+        //_state.value = UIState.Success(moviesRepository.fetchPopularMovies())
+        //
+        moviesRepository.movies.collect {
+            _state.value = UIState.Success(it)
         }
     }
+
 
 }
