@@ -11,4 +11,30 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
   you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
 
 
+## Android Screenshots
+
+<table>
+  <tr>
+    <th>Main</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/android/android_main.png" alt="Main" /></td>
+    <td><img src="screenshots/android/android_details.png" alt="Details" /></td>
+  </tr>
+</table>
+
+## iOS Screenshots
+
+<table>
+  <tr>
+    <th>Main</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/ios/ios_main.png" alt="Main" /></td>
+    <td><img src="screenshots/ios/ios_details.png" alt="Details" /></td>
+  </tr>
+</table>
+
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
